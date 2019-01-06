@@ -1,8 +1,7 @@
 import configparser
 import telebot
-import requests
-import re
 import socket
+import ipinfo
 
 conf = configparser.ConfigParser()
 bot = telebot.TeleBot("")
@@ -50,7 +49,11 @@ def command_ipinfo(message):
 
     if is_valid_ipv4_address(statusstr):
         print("yes")
+        handler = ipinfo.getHandler(ipinfotoken)
+        ip_address = (statusstr)
+        details = handler.getDetails(ip_address)
+        bot.send_message(message.chat.id, 'IP info for ' + statusstr +':\n' + '\nHostname: ' + details.hostname + '\nCity: ' + details.city + '\nRegion: ' + details.region + '\nContry: ' + details.country + '\nLocation: ' + details.loc + '\nPostcode: ' + details.postal)
     else:
-        print ("no")
+        bot.send_message(message.chat.id, 'This IP address is not valid.')
 
 bot.polling(none_stop=1, interval=0, timeout=100000)

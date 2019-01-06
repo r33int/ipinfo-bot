@@ -110,3 +110,4 @@ venv.bak/
 pyenv.cfg
 pip-selfcheck.json
 pyvenv.cfg
+\.vscode/
