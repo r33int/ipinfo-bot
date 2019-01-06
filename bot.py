@@ -31,7 +31,6 @@ def extract_arg(arg):
 def command_ipinfo(message):
     status = extract_arg(message.text)
     statusstr = ''.join(str(e) for e in status)
-    bot.send_message(message.chat.id, 'Input provided: ' + statusstr)
 
     def is_valid_ipv4_address(address):
         try:
@@ -52,7 +51,7 @@ def command_ipinfo(message):
         handler = ipinfo.getHandler(ipinfotoken)
         ip_address = (statusstr)
         details = handler.getDetails(ip_address)
-        bot.send_message(message.chat.id, 'IP info for ' + statusstr +':\n' + '\nHostname: ' + details.hostname + '\nCity: ' + details.city + '\nRegion: ' + details.region + '\nContry: ' + details.country + '\nLocation: ' + details.loc + '\nPostcode: ' + details.postal)
+        bot.send_message(message.chat.id, '- IP info for ' + statusstr +': -\n' + '\nHostname: ' + details.hostname + '\nCity: ' + details.city + '\nRegion: ' + details.region + '\nContry: ' + details.country + '\nLocation: ' + details.loc + '\nPostcode: ' + details.postal)
     else:
         bot.send_message(message.chat.id, 'This IP address is not valid.')
 
