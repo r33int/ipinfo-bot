@@ -54,8 +54,16 @@ def command_ipinfo(message):
         handler = ipinfo.getHandler(ipinfotoken)
         ip_address = (statusstr)
         details = handler.getDetails(ip_address)
+
+        # store info into variables
+        det-hostname = details.hostname
+        det-city = details.city
+        det-region = details.region
+        det-country = details.country
+        det-location = details.location
+        det-postcode = details.postal
         # very dirty, must be cleaned
-        bot.send_message(message.chat.id, '- IP info for ' + statusstr +': -\n' + '\nHostname: ' + details.hostname + '\nCity: ' + details.city + '\nRegion: ' + details.region + '\nContry: ' + details.country + '\nLocation: ' + details.loc + '\nPostcode: ' + details.postal)
+        bot.send_message(message.chat.id, '- IP info for ' + statusstr +': -\n' + '\nHostname: ' + det-hostname + '\nCity: ' + det-city + '\nRegion: ' + det-region + '\nCountry: ' + det-country + '\nLocation: ' + det-location + '\nPostcode: ' + det-postcode)
     else:
         bot.send_message(message.chat.id, 'This IP address is not valid.')
 
